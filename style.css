@@ -1,0 +1,542 @@
+/* --- CSS Variables untuk Konsistensi Warna Modern --- */
+:root {
+    --bg-dark: #060d1b;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --accent-blue: #3a86ff;
+    --accent-cyan: #00f5d4;
+    --accent-purple: #8338ec;
+    --text-main: #f8f9fa;
+    --text-muted: rgba(255, 255, 255, 0.65);
+    --glass-blur: blur(14px);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Background Gelap Bergerak (Animated Dynamic Mesh & Grid) --- */
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(58, 134, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(131, 56, 236, 0.15) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-position: 0 0;
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    animation: moveBg 15s ease-in-out infinite alternate;
+}
+
+@keyframes moveBg {
+    0% {
+        background-position: 0% 0%, 0% 0%, 0 0, 0 0;
+    }
+    50% {
+        background-position: 20% 30%, -20% -30%, 0 0, 0 0;
+    }
+    100% {
+        background-position: -10% 20%, 10% -20%, 0 0, 0 0;
+    }
+}
+
+.pinterest-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Garis Pembatas Modern */
+main section {
+    border-top: 1px solid var(--card-border);
+    padding: 100px 8% 80px;
+    position: relative;
+}
+
+main section:last-child {
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* --- Header & Nav --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(6, 13, 27, 0.75);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--card-border);
+}
+
+header .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: var(--transition);
+}
+
+header nav ul li a:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+}
+
+/* --- Profile Frame Organik (Fluid Blob & Floating Animation) --- */
+.profile-frame {
+    overflow: hidden;
+    position: relative;
+    border: 2px solid rgba(58, 134, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(58, 134, 255, 0.2);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: morphing 8s ease-in-out infinite, float 5s ease-in-out infinite;
+    transition: var(--transition);
+}
+
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    scale: 1.05;
+    transition: var(--transition);
+}
+
+.profile-frame:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 245, 212, 0.4);
+}
+
+.profile-frame:hover img {
+    scale: 1.1;
+}
+
+/* Animasi Ubah Bentuk & Melayang */
+@keyframes morphing {
+    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+
+.pattern-decor span {
+    display: block;
+    color: var(--accent-cyan);
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --- Section 1: Hero/Home --- */
+#home {
+    padding-top: 120px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 40px;
+}
+
+#home .content-left h1 {
+    font-size: 3.8rem;
+    line-height: 1.1;
+    margin-top: 15px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+#home .content-right {
+    display: flex;
+    justify-content: center;
+}
+
+#home .content-right .profile-frame {
+    width: 320px;
+    height: 320px;
+}
+
+.hero-section .footer-details {
+    position: absolute;
+    bottom: 25px;
+    left: 8%;
+    right: 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.contacts-bar {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    backdrop-filter: var(--glass-blur);
+    padding: 12px 30px;
+    border-radius: 50px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.contact-item a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--accent-cyan);
+}
+
+.contact-item img {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Section 2: About Me --- */
+#about {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    align-items: center;
+    gap: 60px;
+}
+
+#about .content-left {
+    display: flex;
+    justify-content: center;
+}
+
+#about .oval-frame {
+    width: 300px;
+    height: 380px;
+}
+
+#about h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+#about .description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 25px 0;
+}
+
+.contacts-bar-inline {
+    border-top: 1px solid var(--card-border);
+    padding-top: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+/* --- Section 3: My Skill --- */
+#my-skill {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+#my-skill h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.skill-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px 15px;
+    text-align: center;
+    cursor: pointer;
+    backdrop-filter: var(--glass-blur);
+    transition: var(--transition);
+}
+
+.skill-item:hover {
+    transform: translateY(-8px);
+    background: rgba(58, 134, 255, 0.12);
+    border-color: rgba(0, 245, 212, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 245, 212, 0.15);
+}
+
+.skill-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.skill-item:hover img {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.skill-item p {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.skill-item img.icon-white {
+    filter: invert(1);
+}
+
+#my-skill .skill-profile-mask {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+    border-radius: 30px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    justify-self: center;
+    transition: var(--transition);
+}
+
+/* --- Section 4: My Projects --- */
+#project h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.project-item {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: var(--glass-blur);
+    transition: var(--transition);
+}
+
+.project-item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(58, 134, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(58, 134, 255, 0.2);
+}
+
+.project-item img {
+    width: 160px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.project-item:hover img {
+    scale: 1.05;
+}
+
+.project-info {
+    padding: 24px;
+}
+
+.project-info h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* --- Section 5: Contact --- */
+#contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+#contact h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.contact-info .info-group {
+    margin-bottom: 25px;
+}
+
+.contact-info .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.contact-info .value {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.stay-connected {
+    margin-top: 40px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 38px;
+    height: 38px;
+    transition: var(--transition);
+}
+
+.social-icons img:hover {
+    transform: translateY(-4px) scale(1.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: var(--text-main);
+    width: 100%;
+    outline: none;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.contact-form button {
+    margin-top: 10px;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: var(--transition);
+    align-self: flex-start;
+}
+
+.contact-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(131, 56, 236, 0.4);
+}
+
+/* --- Responsive Display (Mobile) --- */
+@media screen and (max-width: 768px) {
+    #home, #about, #my-skill, #contact {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    #home .content-left h1 {
+        font-size: 2.8rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .project-item {
+        flex-direction: column;
+    }
+
+    .project-item img {
+        width: 100%;
+        height: 180px;
+    }
+}
